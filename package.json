@@ -1,0 +1,15 @@
+{
+  "name": "simple-crm",
+  "version": "1.0.0",
+  "description": "A simple crm software",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [
+    "crm"
+  ],
+  "author": "Andy Sterkowitz",
+  "license": "ISC"
+}
