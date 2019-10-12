@@ -61,6 +61,15 @@ function createDataColumns() {
       console.log(e);
     }
     buttonCell.appendChild(editIcon);
+    const deleteIcon = document.createElement('i');
+    deleteIcon.setAttribute("class", "fas fa-trash-alt icon-btn");
+    deleteIcon.setAttribute("data-toggle", "tooltip");
+    deleteIcon.setAttribute("data-placement", "top");
+    deleteIcon.setAttribute("title", "Edit");
+    deleteIcon.onclick = (e) => {
+      console.log(e);
+    }
+    buttonCell.appendChild(deleteIcon);
     tableRow.appendChild(buttonCell);
 
     return cells;
