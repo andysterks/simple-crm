@@ -1,3 +1,4 @@
+module.exports = 
 class Prospect {
   constructor(name, email) {
     this.name = name;
