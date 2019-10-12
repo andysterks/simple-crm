@@ -29,12 +29,14 @@ function createHeaderColumns() {
 function createTheadElement(childNodes) {
   const theadEl = document.createElement("thead");
   childNodes.forEach(child => theadEl.appendChild(child));
+  const editColumn = document.createElement("th");
+  theadEl.appendChild(editColumn);
 
   return theadEl;
 }
 
 function createDataColumns() {
-  return prospects.map(prospect => {
+  var dataRows = prospects.map(prospect => {
     const tableRow = document.createElement("tr");
 
     const cells = Object.keys(prospect).map(key => {
@@ -49,8 +51,22 @@ function createDataColumns() {
       return tableRow;
     });
 
+    const buttonCell = document.createElement("td");
+    const editIcon = document.createElement("i");
+    editIcon.setAttribute("class", "fas fa-pencil-alt icon-btn");
+    editIcon.setAttribute("data-toggle", "tooltip");
+    editIcon.setAttribute("data-placement", "top");
+    editIcon.setAttribute("title", "Edit");
+    editIcon.onclick = (e) => {
+      console.log(e);
+    }
+    buttonCell.appendChild(editIcon);
+    tableRow.appendChild(buttonCell);
+
     return cells;
   });
+
+  return dataRows;
 }
 
 function createTbodyElement(childNodes) {
