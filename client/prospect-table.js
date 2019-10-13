@@ -1,9 +1,17 @@
 const table = document.querySelector("#prospect-table");
 
 function createProspectTable(prospects) {
-  const columnHeaderArray = Object.keys(prospects[0]).map(key => {
+  /* const columnHeaderArray = Object.keys(prospects[0]).map(key => {
+    if (key === 'id') return;
     return key.charAt(0).toUpperCase() + key.slice(1, key.length);
-  });
+  }); */
+
+  const columnHeaderArray = Object.keys(prospects[0]).reduce((headerList, key) => {
+    if (key !== 'id'){
+      headerList.push(key.charAt(0).toUpperCase() + key.slice(1, key.length));   
+    }   
+    return headerList;
+  }, []);
 
   createTableHeader(columnHeaderArray);
   createTableBody(prospects);
@@ -43,17 +51,20 @@ function createTableBody(prospects) {
 
 function createDataRow(prospect) {
   const dataRow = document.createElement("tr");
+  dataRow.setAttribute("data-id", prospect.id);
 
   Object.keys(prospect).map(key => {
-    const dataCell = document.createElement("td");
-    dataCell.setAttribute("name", key);
-
-    dataRow.appendChild(dataCell);
-
-    const textNode = document.createTextNode(prospect[key]);
-    dataCell.appendChild(textNode);
-
-    return dataRow;
+    if (key !== 'id') {
+      const dataCell = document.createElement("td");
+      dataCell.setAttribute("name", key);
+  
+      dataRow.appendChild(dataCell);
+  
+      const textNode = document.createTextNode(prospect[key]);
+      dataCell.appendChild(textNode);
+  
+      return dataRow;
+    }
   });
 
   const buttonCell = document.createElement("td");
@@ -61,7 +72,7 @@ function createDataRow(prospect) {
   editIcon.setAttribute("class", "fas fa-pencil-alt icon-btn");
   editIcon.setAttribute("data-toggle", "tooltip");
   editIcon.setAttribute("data-placement", "top");
-  editIcon.setAttribute("title", "Edit");
+  editIcon.setAttribute("title", "Edit Prospect");
   editIcon.onclick = e => {
     console.log(e);
   };
@@ -70,9 +81,17 @@ function createDataRow(prospect) {
   deleteIcon.setAttribute("class", "fas fa-trash-alt icon-btn");
   deleteIcon.setAttribute("data-toggle", "tooltip");
   deleteIcon.setAttribute("data-placement", "top");
-  deleteIcon.setAttribute("title", "Edit");
+  deleteIcon.setAttribute("title", "Delete Prospect");
   deleteIcon.onclick = e => {
     console.log(e);
+    const isDeleted = confirm(`Do you want to delete ${prospect.name}?`);
+    if (isDeleted) {
+      fetch(`api/prospects/${prospect.id}`, { method: 'DELETE' })
+      .then(res => res.json())
+      .then(data => {
+        console.log('user is deleted!');
+      })
+    }
   };
   buttonCell.appendChild(deleteIcon);
   dataRow.appendChild(buttonCell);
