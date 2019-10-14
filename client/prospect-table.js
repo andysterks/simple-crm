@@ -1,5 +1,12 @@
 const table = document.querySelector("#prospect-table");
 
+function recreateProspectTable(prospects) {
+  while (table.firstChild) {
+    table.removeChild(table.firstChild);
+  }
+  createProspectTable(prospects);
+}
+
 function createProspectTable(prospects) {
   /* const columnHeaderArray = Object.keys(prospects[0]).map(key => {
     if (key === 'id') return;
