@@ -75,9 +75,7 @@ function createDataRow(prospect) {
   editIcon.setAttribute("title", "Edit Prospect");
   editIcon.onclick = e => {
     console.log(e);
-    $('#editModal').modal({}, (e) => {
-      console.log('modal show cb!')
-    });
+    editProspectModal.open(prospect);
   };
   buttonCell.appendChild(editIcon);
   const deleteIcon = document.createElement("i");
