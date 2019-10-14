@@ -10,6 +10,11 @@ var editProspectModal = (function() {
       });
 
       $('#editModal').modal();
+
+      const updateButton = document.querySelector('#edit-prospect-modal-update-btn');
+      updateButton.onclick = (e) => {
+        console.log(e);
+      };
     },
     close: function() {
 

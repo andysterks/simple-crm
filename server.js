@@ -14,7 +14,8 @@ app.get('/', (req, res) => {
 
 app.get('/api/prospects', (req, res) => {
   const prospects = [
-    new Prospect('Andy', 'andys@email.com')
+    new Prospect('Andy', 'andys@email.com'),
+    new Prospect('Kuma', 'kuma@email.com')
   ];
 
   res.send(prospects);
