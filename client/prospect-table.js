@@ -8,11 +8,6 @@ function recreateProspectTable(prospects) {
 }
 
 function createProspectTable(prospects) {
-  /* const columnHeaderArray = Object.keys(prospects[0]).map(key => {
-    if (key === 'id') return;
-    return key.charAt(0).toUpperCase() + key.slice(1, key.length);
-  }); */
-
   const columnHeaderArray = Object.keys(prospects[0]).reduce((headerList, key) => {
     if (key !== 'id'){
       headerList.push(key.charAt(0).toUpperCase() + key.slice(1, key.length));   
