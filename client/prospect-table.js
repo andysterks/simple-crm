@@ -34,8 +34,18 @@ function createTableHeader(headerTextArray) {
   const childNodes = createHeaderColumns(headerTextArray);
 
   const theadEl = document.createElement("thead");
+  theadEl.className = 'thead-dark';
   childNodes.forEach(child => theadEl.appendChild(child));
   const editColumn = document.createElement("th");
+  const editColumnSpan = document.createElement('SPAN');
+  editColumnSpan.className = 'float-right';
+  const addProspectIcon = document.createElement('I');
+  addProspectIcon.className = 'fas fa-plus-circle fa-lg icon-btn';
+  editColumn.onclick = (e) => {
+    console.log('add prospect!');
+  };
+  editColumnSpan.appendChild(addProspectIcon);
+  editColumn.appendChild(editColumnSpan);
   theadEl.appendChild(editColumn);
 
   table.appendChild(theadEl);
@@ -70,6 +80,8 @@ function createDataRow(prospect) {
   });
 
   const buttonCell = document.createElement("td");
+  const iconSpan = document.createElement('SPAN');
+  iconSpan.className = 'float-right';
   const editIcon = document.createElement("i");
   editIcon.setAttribute("class", "fas fa-pencil-alt icon-btn");
   editIcon.setAttribute("data-toggle", "tooltip");
@@ -79,7 +91,7 @@ function createDataRow(prospect) {
     console.log(e);
     editProspectModal.open(prospect);
   };
-  buttonCell.appendChild(editIcon);
+  iconSpan.appendChild(editIcon);
   const deleteIcon = document.createElement("i");
   deleteIcon.setAttribute("class", "fas fa-trash-alt icon-btn");
   deleteIcon.setAttribute("data-toggle", "tooltip");
@@ -96,7 +108,8 @@ function createDataRow(prospect) {
       })
     }
   };
-  buttonCell.appendChild(deleteIcon);
+  iconSpan.appendChild(deleteIcon);
+  buttonCell.appendChild(iconSpan);
   dataRow.appendChild(buttonCell);
 
   return dataRow;
