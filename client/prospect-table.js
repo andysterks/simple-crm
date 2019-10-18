@@ -43,6 +43,7 @@ function createTableHeader(headerTextArray) {
   addProspectIcon.className = 'fas fa-plus-circle fa-lg icon-btn';
   editColumn.onclick = (e) => {
     console.log('add prospect!');
+    createProspectModal.open();
   };
   editColumnSpan.appendChild(addProspectIcon);
   editColumn.appendChild(editColumnSpan);
