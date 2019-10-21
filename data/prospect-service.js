@@ -21,6 +21,15 @@ const getProspect = (id) => {
   return prospectResults[0];
 };
 
+const createProspect = (name, email) => {
+  const prospect = prospects.push({
+    name,
+    email
+  })
+  
+  return prospect;
+}
+
 const updateProspect = (id, updateProspect) => {
   const prospect = getProspect(id);
 
@@ -45,6 +54,7 @@ const deleteProspect = (id) => {
 module.exports = {
   getAllProspects,
   getProspect,
+  createProspect,
   updateProspect,
   deleteProspect
 }

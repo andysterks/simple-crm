@@ -103,10 +103,12 @@ function createDataRow(prospect) {
     const isDeleted = confirm(`Do you want to delete ${prospect.name}?`);
     if (isDeleted) {
       fetch(`api/prospects/${prospect.id}`, { method: 'DELETE' })
-      .then(res => res.json())
-      .then(data => {
+      .then(res => {
         console.log('user is deleted!');
-      })
+        fetchProspects().then(updatedProspects => {
+          recreateProspectTable(updatedProspects);
+        });
+      });
     }
   };
   iconSpan.appendChild(deleteIcon);

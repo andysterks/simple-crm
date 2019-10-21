@@ -22,6 +22,11 @@ app.get('/api/prospects', (req, res) => {
   res.send(prospectService.getAllProspects());
 });
 
+app.post('/api/prospects', (req, res) => {
+  prospectService.createProspect(req.body.name, req.body.email);
+  res.sendStatus(201);
+})
+
 app.put('/api/prospects/:id', (req, res) => {
   prospectService.updateProspect(req.params.id, req.body);
   res.sendStatus(204);
