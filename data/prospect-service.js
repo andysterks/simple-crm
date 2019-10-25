@@ -22,10 +22,7 @@ const getProspect = (id) => {
 };
 
 const createProspect = (name, email) => {
-  const prospect = prospects.push({
-    name,
-    email
-  })
+  const prospect = prospects.push(new Prospect(name, email));
   
   return prospect;
 }

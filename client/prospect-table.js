@@ -8,7 +8,7 @@ function recreateProspectTable(prospects) {
 }
 
 function createProspectTable(prospects) {
-  const columnHeaderArray = Object.keys(prospects[0]).reduce((headerList, key) => {
+  const columnHeaderArray = prospects.length === 0 ? ['Name', 'Email'] : Object.keys(prospects[0]).reduce((headerList, key) => {
     if (key !== 'id'){
       headerList.push(key.charAt(0).toUpperCase() + key.slice(1, key.length));   
     }   
@@ -55,6 +55,17 @@ function createTableHeader(headerTextArray) {
 function createTableBody(prospects) {
   const tbodyEl = document.createElement("tbody");
   table.appendChild(tbodyEl);
+
+  if (prospects.length === 0) {
+    const emptyDataRow = document.createElement('TR');
+    const emptyDataCell = document.createElement('TD');
+    emptyDataCell.textContent = 'No prospects found!';
+    emptyDataCell.setAttribute('colspan', 3);
+    emptyDataRow.appendChild(emptyDataCell);
+    tbodyEl.appendChild(emptyDataRow);
+
+    return;
+  }
 
   prospects.forEach(prospect => {
     const rowData = createDataRow(prospect);
