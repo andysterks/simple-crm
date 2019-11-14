@@ -37,6 +37,6 @@ To go to the site open your browser and navigate to http://localhost:3000
 * [Node](https://nodejs.org/en/) - The web server used
 * [Express](https://expressjs.com/) - The web framework used
 
-## Authors
+## Author
 
 * **Andy Sterkowitz** - [GitHub](https://github.com/andysterks)
