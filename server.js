@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const path = require("path");
+const dbService = require('./data/db-connection');
 
 const prospectService = require("./data/prospect-service");
 
@@ -40,3 +41,5 @@ app.delete("/api/prospects/:id", (req, res) => {
 app.listen(port, () => {
   console.log(`Server listing on ${port}!`);
 });
+
+dbService.derp();
