@@ -3,7 +3,7 @@ const app = express();
 const path = require("path");
 const dbService = require('./data/db-connection');
 
-const prospectService = require("./data/prospect-service");
+const prospectQueryService = require("./data/prospect-qeury-service");
 
 const port = process.env.port || 3000;
 
@@ -19,8 +19,8 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "client", "index.html"));
 });
 
-app.get("/api/prospects", (req, res) => {
-  res.send(prospectService.getAllProspects());
+app.get("/api/prospects", async (req, res) => {
+  res.send(await prospectQueryService.getAllProspects());
 });
 
 app.post("/api/prospects", (req, res) => {
@@ -41,5 +41,3 @@ app.delete("/api/prospects/:id", (req, res) => {
 app.listen(port, () => {
   console.log(`Server listing on ${port}!`);
 });
-
-dbService.derp();
