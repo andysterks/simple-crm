@@ -23,6 +23,14 @@ function createHeaderColumns(headerTextArray) {
   return headerTextArray.map(headerText => {
     const headerRow = document.createElement("th");
 
+    // TODO: Set id of the <th></th>
+    // element to match the id of the
+    // column so it can be edited
+    headerRow.setAttribute("data-id", 'derp');
+    // TODO: Create class that will 
+    // turn cursor to select text
+    // to indicate header can be edited
+    //headerRow.className = 'TBD';
     const textNode = document.createTextNode(headerText);
     headerRow.appendChild(textNode);
 
