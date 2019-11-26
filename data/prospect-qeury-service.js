@@ -1,4 +1,6 @@
 const dbConnection = require('./db-connection');
+const Prospect = require('../models/prospect');
+const ProspectProperty = require('../models/prospect-property');
 
 async function getAllProspects() {
   const client = await dbConnection.getClient();
@@ -13,7 +15,7 @@ async function getAllProspects() {
     const prospects = await prospectsCollection.find().toArray();
 
     for (const prospect of prospects) {
-      const newProspect = { id: prospect._id };
+      const newProspect = new Prospect(prospect._id, null);
 
       for (const dataColumn of prospect.data) {
         const query = {
@@ -22,6 +24,11 @@ async function getAllProspects() {
         const matchingColumn = await tableSchemaCollection.findOne(query);
 
         if (matchingColumn !== null) {
+          const property = new ProspectProperty(
+            matchingColumn._id, 
+            matchingColumn.column_name, 
+            dataColumn.value);
+          newProspect.properties.push(property);
           newProspect[matchingColumn.column_name] = dataColumn.value;
         }
       }
