@@ -8,13 +8,15 @@ function recreateProspectTable(prospects) {
 }
 
 function createProspectTable(prospects) {
-  const columnHeaderArray = prospects.length === 0 ? ['Name', 'Email'] : Object.keys(prospects[0]).reduce((headerList, key) => {
-    if (key !== 'id'){
-      console.log('headerList: ', headerList);
-      console.log('key: ', key);
-      headerList.push(key.charAt(0).toUpperCase() + key.slice(1, key.length));   
-    }   
-    return headerList;
+  const columnHeaderArray = prospects.length === 0 
+    ? ['Name', 'Email'] 
+    : Object.keys(prospects[0]).reduce((headerList, key) => {
+      if (key !== 'id'){
+        console.log('headerList: ', headerList);
+        console.log('key: ', key);
+        headerList.push(key.charAt(0).toUpperCase() + key.slice(1, key.length));   
+      }   
+      return headerList;
   }, []);
 
   createTableHeader(columnHeaderArray);

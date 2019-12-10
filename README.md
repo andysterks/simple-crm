@@ -34,9 +34,10 @@ To go to the site open your browser and navigate to http://localhost:3000
 
 ## Built With
 
-* [Node](https://nodejs.org/en/) - The web server used
-* [Express](https://expressjs.com/) - The web framework used
+* [Node](https://nodejs.org/en/)
+* [Express](https://expressjs.com/)
+* [MongoDB](https://www.mongodb.com/)
 
 ## Authors
 
-* **Andy Sterkowitz** - [GitHub](https://github.com/andysterks)
+* **Andy Sterkowitz** - *Full-Stack Software Developer* - [Website](https://andysterkowitz.com) | [LinkedIn](https://www.linkedin.com/in/andrewsterkowitz/)

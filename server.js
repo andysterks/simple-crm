@@ -4,6 +4,7 @@ const path = require("path");
 const dbService = require('./data/db-connection');
 
 const prospectQueryService = require("./data/prospect-qeury-service");
+const schemaQueryService = require("./data/table-schema-query-service");
 
 const port = process.env.port || 3000;
 
@@ -17,6 +18,18 @@ app.use(function(err, req, res, next) {
 
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "client", "index.html"));
+});
+
+app.get('/api/table/prospects', async (req, res) => {
+  const prospects = await prospectQueryService.getAllProspects();
+  const tableSchema = await schemaQueryService.getSchema();
+
+  const prospectTableData = {
+    tableSchema,
+    prospects
+  }
+
+  res.send(prospectTableData);
 });
 
 app.get("/api/prospects", async (req, res) => {

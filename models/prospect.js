@@ -3,10 +3,8 @@ require('./prospect-property');
 
 module.exports = 
 class Prospect {
-  constructor(id, name, email, properties) {
+  constructor(id, properties) {
     this.id = id;
-    this.name = name;
-    this.email = email;
     this.properties = properties || [];
   }
 }

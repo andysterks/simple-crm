@@ -27,9 +27,9 @@ async function getAllProspects() {
           const property = new ProspectProperty(
             matchingColumn._id, 
             matchingColumn.column_name, 
-            dataColumn.value);
+            dataColumn.value
+          );
           newProspect.properties.push(property);
-          newProspect[matchingColumn.column_name] = dataColumn.value;
         }
       }
 

@@ -3,5 +3,6 @@ module.exports = class ProspectProperty {
     this.id = id;
     this.name = name;
     this.value = value;
+    this.order = null;
   }
 }
