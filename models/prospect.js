@@ -1,4 +1,3 @@
-const uuid = require('uuid/v4')
 require('./prospect-property');
 
 module.exports = 

@@ -10,11 +10,9 @@ function recreateProspectTable(prospects) {
 function createProspectTable(prospects) {
   const columnHeaderArray = prospects.length === 0 
     ? ['Name', 'Email'] 
-    : Object.keys(prospects[0]).reduce((headerList, key) => {
-      if (key !== 'id'){
-        console.log('headerList: ', headerList);
-        console.log('key: ', key);
-        headerList.push(key.charAt(0).toUpperCase() + key.slice(1, key.length));   
+    : prospects[0].properties.reduce((headerList, property) => {
+      if (property !== 'id') {
+        headerList.push(property.name.charAt(0).toUpperCase() + property.name.slice(1, property.length));   
       }   
       return headerList;
   }, []);
@@ -54,7 +52,6 @@ function createTableHeader(headerTextArray) {
   const addProspectIcon = document.createElement('I');
   addProspectIcon.className = 'fas fa-plus-circle fa-lg icon-btn';
   editColumn.onclick = (e) => {
-    console.log('add prospect!');
     createProspectModal.open();
   };
   editColumnSpan.appendChild(addProspectIcon);
@@ -89,18 +86,14 @@ function createDataRow(prospect) {
   const dataRow = document.createElement("tr");
   dataRow.setAttribute("data-id", prospect.id);
 
-  Object.keys(prospect).map(key => {
-    if (key !== 'id') {
-      const dataCell = document.createElement("td");
-      dataCell.setAttribute("name", key);
-  
-      dataRow.appendChild(dataCell);
-  
-      const textNode = document.createTextNode(prospect[key]);
-      dataCell.appendChild(textNode);
-  
-      return dataRow;
-    }
+  prospect.properties.forEach(property => {
+    const dataCell = document.createElement("td");
+    dataCell.setAttribute("name", property.name);
+    
+    dataRow.appendChild(dataCell);
+    
+    const textNode = document.createTextNode(property.value);
+    dataCell.appendChild(textNode);
   });
 
   const buttonCell = document.createElement("td");
@@ -112,7 +105,6 @@ function createDataRow(prospect) {
   editIcon.setAttribute("data-placement", "top");
   editIcon.setAttribute("title", "Edit Prospect");
   editIcon.onclick = e => {
-    console.log(e);
     editProspectModal.open(prospect);
   };
   iconSpan.appendChild(editIcon);
@@ -122,13 +114,11 @@ function createDataRow(prospect) {
   deleteIcon.setAttribute("data-placement", "top");
   deleteIcon.setAttribute("title", "Delete Prospect");
   deleteIcon.onclick = e => {
-    console.log(e);
     const isDeleted = confirm(`Do you want to delete ${prospect.name}?`);
     if (isDeleted) {
       fetch(`api/prospects/${prospect.id}`, { method: 'DELETE' })
       .then(res => {
-        console.log('user is deleted!');
-        fetchProspects().then(updatedProspects => {
+        fetchProspectTableData().then(updatedProspects => {
           recreateProspectTable(updatedProspects);
         });
       });

@@ -28,10 +28,11 @@
 
 })();
 
-fetchProspects().then(prospects => {
-  recreateProspectTable(prospects);
+fetchProspectTableData().then(tableData => {
+  console.log('tableData: ', tableData);
+  recreateProspectTable(tableData.prospects);
 });
 
-function fetchProspects() {
-  return fetch("api/prospects").then(res => res.json());
+function fetchProspectTableData() {
+  return fetch("api/table/prospects").then(res => res.json());
 }
