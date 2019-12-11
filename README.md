@@ -1,6 +1,10 @@
 # Simple CRM
 
-Sometimes you just need a simple customer relationship management software that is simple and no frills. This is the app for you! :-)
+_Sometimes you just need a simple customer relationship management software that is simple and no frills. This is the app for you! :-)_
+
+<br>
+
+<image src="github/prospect-table.png">
 
 ### Prerequisites
 
